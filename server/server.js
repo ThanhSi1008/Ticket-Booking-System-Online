@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');  // Import cors
 const connectDB = require('./config/db');  // Import connectDB từ db.js
 const movieRoutes = require('./routes/movieRoutes');
-const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes')
 
 const app = express();
@@ -22,13 +22,19 @@ app.get('/', (req, res) => {
 });
 
 // Sử dụng route movie
-app.use('/api', movieRoutes);
+app.use('/movies', movieRoutes);
 
-app.use('/user', userRoutes)
+app.use('/auth', authRoutes)
 
-app.use('/product', productRoutes)
+app.use('/products', productRoutes)
 
 // Chạy server trên port 3000
-app.listen(3000, '0.0.0.0', () => {
-  console.log("Server is running on http://0.0.0.0:3000");
+// app.listen(3000, '0.0.0.0', () => {
+//   console.log("Server is running on http://0.0.0.0:3000");
+// });
+
+app.listen(3001, () => {
+  console.log("Server is running on 3001");
 });
+
+module.exports = app
